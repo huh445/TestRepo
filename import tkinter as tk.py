@@ -31,14 +31,23 @@ def resetScore():
 Score1 = tk.Label(root)
 Score1.pack()
 
-increaseScore1Button = tk.Button(root, text="Increase Score 1 By 1", command=increaseScore1)
-increaseScore1Button.pack()
+increaseScoreButton = tk.Button(root, text="+", command=increaseScore1)
+increaseScoreButton.pack()
 
-decreaseScore1Button = tk.Button(root, text="Decrease Score 1 By 1", command=decreaseScore1)
-decreaseScore1Button.pack()
+decreaseScoreButton = tk.Button(root, text="-", command=decreaseScore1)
+decreaseScoreButton.pack()
 
-resetScore1 = tk.Button(root, text="Reset", command=resetScore)
-resetScore1.pack()
+resetScoreButton = tk.Button(root, text="Reset Counter", command=resetScore)
+resetScoreButton.pack()
+
+increaseScoreButton.configure(width=5, height=2)
+increaseScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",50))
+
+decreaseScoreButton.configure(width=5, height=2)
+decreaseScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",50))
+
+resetScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",18))
+
 
 root.geometry("640x480")
 root.mainloop()
