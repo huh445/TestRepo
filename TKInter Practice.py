@@ -27,17 +27,16 @@ def resetScore():
     Score1.configure(text=currentScore1)
 
 
+increaseScoreButton = tk.Button(root, text="+", command=increaseScore1)
+increaseScoreButton.pack()
 
 Score1 = tk.Label(root)
 Score1.pack()
 
-increaseScoreButton = tk.Button(root, text="+", command=increaseScore1)
-increaseScoreButton.pack()
-
 decreaseScoreButton = tk.Button(root, text="-", command=decreaseScore1)
 decreaseScoreButton.pack()
 
-resetScoreButton = tk.Button(root, text="Reset Counter", command=resetScore)
+resetScoreButton = tk.Button(root, text="RESET COUNTER", command=resetScore)
 resetScoreButton.pack()
 
 increaseScoreButton.configure(width=5, height=2)
@@ -48,6 +47,10 @@ decreaseScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",50))
 
 resetScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",18))
 
+Score1.config(fg="#000000",font=("Arial",50), borderwidth=1, relief="solid")
 
-root.geometry("640x480")
+increaseScoreButton.place(x=300, y=100)
+decreaseScoreButton.place(x=750, y=100)
+
+root.geometry("1280x720")
 root.mainloop()
