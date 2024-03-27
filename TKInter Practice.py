@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 root = tk.Tk()
 
@@ -12,6 +13,9 @@ def increaseScore1():
     Score1.configure(text = currentScore1)
     if currentScore1 > 200:
         capacityLabel.config(text="At capacity")
+        messagebox.showerror("Error", "At capacity")
+        currentScore1 = 201
+        Score1.configure(text = currentScore1)
     else:
         capacityLabel.config(text="Not at capacity")
 
@@ -19,7 +23,7 @@ def decreaseScore1():
     global currentScore1
     currentScore1 = currentScore1 - 1
     if currentScore1 < 0:
-        print("The score can only be positive.")
+        messagebox.showerror("Error", "The score can only be positive")
         currentScore1 = 0
         Score1.configure(text = currentScore1)
     else:
@@ -29,6 +33,11 @@ def resetScore():
     global currentScore1
     currentScore1 = 0
     Score1.configure(text=currentScore1)
+
+def cheatScore():
+    global currentScore1
+    currentScore1 = 199
+    Score1.configure(text = currentScore1)
 
 
 increaseScoreButton = tk.Button(root, text="+", command=increaseScore1)
@@ -46,8 +55,8 @@ resetScoreButton.pack()
 NWAlignedLabel = tk.Label(root, text="...and be counted app")
 NWAlignedLabel.pack(anchor="nw")
 
-ExitButton = tk.Button(root, text="Exit", command=root.destroy)
-ExitButton.pack(anchor="se", side="bottom")
+exitButton = tk.Button(root, text="Exit", command=root.destroy)
+exitButton.pack(anchor="se", side="bottom")
 
 headingLabel = tk.Label(root, text="...and be counted app")
 headingLabel.pack(anchor="center")
@@ -57,6 +66,10 @@ subHeadingLabel.pack(anchor="center")
 
 capacityLabel = tk.Label(root, text="Not at capacity")
 capacityLabel.pack(anchor="center")
+
+cheatButton = tk.Button(root, text="YEP CUM", command=currentScore1)
+cheatButton.pack()
+
 
 increaseScoreButton.configure(width=5, height=2)
 increaseScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",50))
@@ -69,7 +82,7 @@ resetScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",18))
 Score1.configure(width=7, height=2)
 Score1.config(fg="#000000",font=("Arial",50), borderwidth=1, relief="solid")
 
-ExitButton.config(bg="#000000", fg="#ffffff", font=("Arial"))
+exitButton.config(bg="#000000", fg="#ffffff", font=("Arial"))
 
 NWAlignedLabel.config(fg="#000000",font=("Arial",10))
 
