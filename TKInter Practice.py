@@ -67,9 +67,6 @@ subHeadingLabel.pack(anchor="center")
 capacityLabel = tk.Label(root, text="Not at capacity")
 capacityLabel.pack(anchor="center")
 
-cheatButton = tk.Button(root, text="YEP CUM", command=currentScore1)
-cheatButton.pack()
-
 
 increaseScoreButton.configure(width=5, height=2)
 increaseScoreButton.config(bg="#000000",fg="#ffffff",font=("Arial",50))
