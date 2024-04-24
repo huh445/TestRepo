@@ -27,7 +27,7 @@ label_result.pack()
 label_result.configure(bg="red", pady=5, fg="white")
 
 text_display = tk.Text(root, height=6, width=30)
-text_display.pack(pady=5)
+text_display.pack(pady=5    )
 
 root.geometry("400x300")
 root.title("Pokedex")
