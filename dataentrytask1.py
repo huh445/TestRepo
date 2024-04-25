@@ -9,7 +9,7 @@ pokemonList = {
 
 def add_pokemon():
     pokemonEntryName = pokemonName.get()
-    pokemonEntryType = pokemonType.get()r
+    pokemonEntryType = pokemonType.get()
     if pokemonEntryName and pokemonEntryType:
         pokemonList[pokemonEntryName] = pokemonEntryType
         print(pokemonList)
