@@ -13,6 +13,8 @@ class ImageEditor:
         self.load_button = tk.Button(self.master, text="Load Image", command=self.load_image)
         self.load_button.pack()
 
+        self.master.geometry("640x480")
+
         self.filter_var = tk.StringVar()
         self.filter_var.set("BLUR")
         self.filter_menu = tk.OptionMenu(self.master, self.filter_var, "BLUR", "CONTOUR", "DETAIL", "EDGE_ENHANCE", "EMBOSS", "SHARPEN")
