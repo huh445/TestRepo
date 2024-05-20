@@ -10,11 +10,10 @@ class Circle(Shape):
      def __init__(self, colour, radius):
         super().__init__(colour)
         self.radius = radius
-     def get_area(self):
-         return 3.14 * self.radius**2
      def get_info(self):
          super().get_info()
          print(f"Radius: {self.radius}")
+         print(f"Area: {GetInfo.get_area(self, self.radius, 0)}")
 
 class Rectangle(Shape):
      def __init__(self, colour, width, length):
@@ -26,19 +25,32 @@ class Rectangle(Shape):
          return self.area
      def get_info(self):
          super().get_info()
-         print(f"Area: {self.get_area()}")
-     def is_square(self):
-         if self.width == self.length:
-             return True
-         else:
-             return False
+         print(f"Area: {GetInfo.get_area(self, self.width, self.length)}")
 
 class Triangle(Shape):
-     def __init__(self, colour)
+    def __init__(self, colour, width, height):
+        super().__init__(colour)
+        self.width = width
+        self.height = height
+    def get_info(self):
+        super().get_info()
+        print(f"Area: {GetInfo.get_area(self, self.width, self.height)}")
+
+class GetInfo(Shape):
+    def get_area(self, width, height):
+        if Triangle:
+            self.area = width * height * 0.5
+        elif Rectangle:
+            self.area = width * height
+        elif Circle:
+            self.area = 3.14 * width**2
+        return self.area
+
 john = Circle("Green", 12)
 john.get_info()
-print(f"John's area = {john.get_area()}")
 
 steve = Rectangle("Brown", 4, 4)
 steve.get_info()
-print(f"Steve is a square, {steve.is_square()}")
+
+evan = Triangle("Steven", 12, 4)
+evan.get_info()
