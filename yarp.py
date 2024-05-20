@@ -10,15 +10,13 @@ class App:
         self.root = root
         self.tree = tree
         self.canvas = canvas
-        self.check = tk.Button(self.root, text="Check transactions", command=self.compare)
-        self.allCheck = tk.Button(self.root, text="All transactions", command=self.all)
+        self.check = tk.Button(self.root, text="Check transactions", command=self.onEnterPressed)
         self.entry = tk.Entry(self.root)
+        self.entry.bind("<Return>", self.onEnterPressed)
         self.info = tk.Label(self.root)
-        self.count = 0
-        self.spent = 0
         self.rows = []  # Store rows for later use
         self.balance = defaultdict(float)  # Store cumulative balance for each date
-        self.count_by_date = defaultdict(int)  # Store count of transactions for each date
+        self.countByDate = defaultdict(int)  # Store count of transactions for each date
         self.pack()
 
     def importcsv(self):
@@ -34,11 +32,17 @@ class App:
             for row in reader:
                 self.rows.append(row)  # Store each row
                 self.tree.insert("", tk.END, values=row)
+    def onEnterPressed(self, keyword=None):
+        keyword = self.entry.get().upper()
+        if keyword:
+            self.compare()
+        else:
+            self.all()
 
-    def compare(self):
+    def compare(self, keyword=None):
         keyword = self.entry.get().upper()  # Convert to uppercase for case-insensitive comparison
-        self.count = 0
-        self.spent = 0
+        count = 0
+        spent = 0
 
         # Clear the current Treeview items
         for item in self.tree.get_children():
@@ -49,33 +53,33 @@ class App:
             transactions = row[2].upper()  # Convert to uppercase for case-insensitive comparison
             value = float(row[1])
             if keyword in transactions:
-                self.count += 1
-                self.spent += value
+                count += 1
+                spent += value
                 self.tree.insert("", tk.END, values=row)
 
                 # Update count of transactions for the date
-                self.count_by_date[row[0]] += 1
+                self.countByDate[row[0]] += 1
 
-        self.info.config(text=f"Amount spent: ${self.spent:.2f} Amount of transactions: {self.count}")
+        self.info.config(text=f"Amount spent: ${spent:.2f} Amount of transactions: {count}")
 
         # Plot graph with filtered data
         self.plotGraph(keyword)
 
     def all(self):
-        self.count = 0
-        self.spent = 0
+        self.canvas.get_tk_widget().pack_forget()
+        count = 0
+        spent = 0
         for item  in self.tree.get_children():
             self.tree.delete(item)
         for row in self.rows:
             value = float(row[1])
             if value < 0:
-                self.count += 1
-                self.spent += value
+                count += 1
+                spent += value
                 self.tree.insert("", tk.END, values=row)
-                self.count_by_date[row[0]] += 1
+                self.countByDate[row[0]] += 1
         
-        self.info.config(text=f"Amount spent: ${self.spent:.2f} Amount of transactions: {self.count}")
-        self.plotGraph()
+        self.info.config(text=f"Toal spent: ${spent:.2f} Amount of negative transactions: {count}")
 
     def plotGraph(self, keyword=None):
         self.balance.clear()  # Clear previous balance data
@@ -121,8 +125,8 @@ class App:
         self.info.config(font=("Arial", 24))
         self.entry.pack()
         self.check.pack()
-        self.allCheck.pack()
         self.tree.pack(expand=True, fill='both')
+        self.all()
 
 if __name__ == "__main__":
     root = tk.Tk()
