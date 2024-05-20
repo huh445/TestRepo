@@ -35,10 +35,10 @@ def sortByNumber():
         tree.insert("", "end", text=pokemon, values=(info["Number"], info["Type"], info["Height"], info["Weight"]))
 
 def sortAlphabetically():
-    sortedPokemon = sorted(pokemonData.items())
-    tree.delete(*tree.get_children())
-    for pokemon, info in sortedPokemon:
-        tree.insert("", "end", text=pokemon, values=(info["Number"], info["Type"], info["Height"], info["Weight"]))
+        sortedPokemon = sorted(pokemonData.items())
+        tree.delete(*tree.get_children())
+        for pokemon, info in sortedPokemon:
+            tree.insert("", "end", text=pokemon, values=(info["Number"], info["Type"], info["Height"], info["Weight"]))
 
 def sortWeight():
     sortedPokemon = sorted(pokemonData.items(), key=lambda x: float(x[1]["Weight"].split("kg")[0]))
