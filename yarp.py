@@ -60,6 +60,22 @@ class App:
         # Plot graph with filtered data
         self.plotGraph(keyword)
 
+    def all(self):
+        self.count = 0
+        self.spent = 0
+        for item  in self.tree.get_children():
+            self.tree.delete(item)
+        for row in self.rows:
+            value = float(row[1])
+            if value < 0:
+                self.count += 1
+                self.spent += value
+                self.tree.insert("", tk.END, values=row)
+                self.count_by_date[row[0]] += 1
+        
+        self.info.config(text=f"Amount spent: ${self.spent:.2f} Amount of transactions: {self.count}")
+        self.plotGraph()
+
     def plotGraph(self, keyword=None):
         self.balance.clear()  # Clear previous balance data
         cumulative_spent = 0  # Initialize cumulative spent amount
@@ -105,7 +121,7 @@ class App:
         self.entry.pack()
         self.check.pack()
         self.tree.pack(expand=True, fill='both')
-        self.plotGraph()  # Plot the initial graph
+        # self.plotGraph()  # Plot the initial graph
 
 if __name__ == "__main__":
     root = tk.Tk()
