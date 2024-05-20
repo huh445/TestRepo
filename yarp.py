@@ -11,6 +11,7 @@ class App:
         self.tree = tree
         self.canvas = canvas
         self.check = tk.Button(self.root, text="Check transactions", command=self.compare)
+        self.allCheck = tk.Button(self.root, text="All transactions", command=self.all)
         self.entry = tk.Entry(self.root)
         self.info = tk.Label(self.root)
         self.count = 0
@@ -120,8 +121,8 @@ class App:
         self.info.config(font=("Arial", 24))
         self.entry.pack()
         self.check.pack()
+        self.allCheck.pack()
         self.tree.pack(expand=True, fill='both')
-        # self.plotGraph()  # Plot the initial graph
 
 if __name__ == "__main__":
     root = tk.Tk()
