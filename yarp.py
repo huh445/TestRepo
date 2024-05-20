@@ -13,6 +13,7 @@ class App:
         self.root = root
         self.tree = tree
         self.check = tk.Button(self.root, text="Check transactions", command=self.compare)
+        self.allCheck = tk.Button(self.root, text="Check all spent", command=self.all)
         self.entry = tk.Entry(self.root)
         self.info = tk.Label(self.root)
         self.count = 0
@@ -26,7 +27,7 @@ class App:
         self.pack()
 
     def importcsv(self):
-        with open("transactions.csv", mode="r") as f:
+        with open("transactions.csv", mode="r", encoding="utf-8") as f:
             reader = csv.reader(f)
             headers = next(reader)
             self.tree["columns"] = headers
@@ -57,6 +58,25 @@ class App:
 
                 self.count_by_date[row[0]] += 1
 
+        self.info.config(text=f"Amount spent: ${self.spent:.2f} Amount of transactions: {self.count}")
+
+        self.plotGraph(keyword)
+    def all(self):
+        keyword = ""
+        self.count = 0
+        self.spent = 0
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        for row in self.rows:
+            transactions = row[2].upper()
+            value = float(row[1])
+            if value < 0:
+                self.count += 1
+                self.spent += value
+                self.tree.insert("", tk.END, values=row)
+
+                self.count_by_date[row[0]] += 1
+        
         self.info.config(text=f"Amount spent: ${self.spent:.2f} Amount of transactions: {self.count}")
 
         self.plotGraph(keyword)
@@ -96,6 +116,7 @@ class App:
         self.info.config(font=("Arial", 24))
         self.entry.pack()
         self.check.pack()
+        self.allCheck.pack()
         self.tree.pack(expand=True, fill='both')
         self.canvas.pack()
         self.plotGraph()
