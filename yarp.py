@@ -1,6 +1,6 @@
 import csv
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from collections import defaultdict
@@ -17,6 +17,7 @@ class App:
         self.rows = []  # Store rows for later use
         self.balance = defaultdict(float)  # Store cumulative balance for each date
         self.countByDate = defaultdict(int)  # Store count of transactions for each date
+        self.root.protocol("WM_DELETE_WINDOW", self.close)
         self.pack()
 
     def importcsv(self):
@@ -35,34 +36,31 @@ class App:
     def onEnterPressed(self, keyword=None):
         keyword = self.entry.get().upper()
         if keyword:
-            self.compare()
+            self.compare(keyword)
         else:
             self.all()
 
-    def compare(self, keyword=None):
-        keyword = self.entry.get().upper()  # Convert to uppercase for case-insensitive comparison
+    def compare(self, keyword):
+        if not keyword:
+            messagebox.showwarning("Error:", "The program terribly failed.")
         count = 0
         spent = 0
 
-        # Clear the current Treeview items
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        # Filter and display transactions in the Treeview
         for row in self.rows:
-            transactions = row[2].upper()  # Convert to uppercase for case-insensitive comparison
+            transactions = row[2].upper()
             value = float(row[1])
             if keyword in transactions:
                 count += 1
                 spent += value
                 self.tree.insert("", tk.END, values=row)
 
-                # Update count of transactions for the date
                 self.countByDate[row[0]] += 1
 
         self.info.config(text=f"Amount spent: ${spent:.2f} Amount of transactions: {count}")
 
-        # Plot graph with filtered data
         self.plotGraph(keyword)
 
     def all(self):
@@ -80,20 +78,24 @@ class App:
                 self.countByDate[row[0]] += 1
         
         self.info.config(text=f"Toal spent: ${spent:.2f} Amount of negative transactions: {count}")
+        self.plotGraph()
 
     def plotGraph(self, keyword=None):
         self.balance.clear()  # Clear previous balance data
         cumulative_spent = 0  # Initialize cumulative spent amount
         dates = []  # Initialize list to store dates
-
         for row in self.rows:
             date = row[0]
             amount = float(row[1])
             transaction = row[2].upper()
-            if keyword is None or keyword in transaction:
+            if keyword is not None and keyword in transaction:
                 cumulative_spent += amount  # Update cumulative spent amount
                 self.balance[date] = cumulative_spent  # Store cumulative spent amount for the date
                 dates.append(date)  # Store the date
+            elif keyword == None and amount < 0:
+                cumulative_spent += amount
+                self.balance[date] = cumulative_spent
+                dates.append(date)
 
         cumulative_spent_values = [self.balance[date] for date in dates]
 
@@ -105,7 +107,6 @@ class App:
         ax1.set_ylabel('Cumulative Spent', color='tab:blue')
 
         plt.title('Cumulative Spent and Count of Transactions Over Time')
-        plt.xticks(range(1, len(dates) + 1), dates, rotation=45, ha='right')
         plt.tight_layout()
 
         # Show legend
@@ -127,6 +128,9 @@ class App:
         self.check.pack()
         self.tree.pack(expand=True, fill='both')
         self.all()
+    
+    def close(self):
+        self.root.quit()
 
 if __name__ == "__main__":
     root = tk.Tk()
