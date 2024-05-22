@@ -77,7 +77,7 @@ class App:
                 self.tree.insert("", tk.END, values=row)
                 self.countByDate[row[0]] += 1
         
-        self.info.config(text=f"Toal spent: ${spent:.2f} Amount of negative transactions: {count}")
+        self.info.config(text=f"Total spent: ${spent:.2f} Amount of negative transactions: {count}")
         self.plotGraph()
 
     def plotGraph(self, keyword=None):
