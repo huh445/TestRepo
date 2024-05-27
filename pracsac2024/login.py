@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from timetable import Timetable
 
 class Login:
@@ -20,11 +21,11 @@ class Login:
         if len(username) == 5 and len(password) == 5:
             for user in users:
                 username_element = user.find("username")
-                username_text = username_element.text
-                if username_text == username:
+                if username_element.text == username:
                     password_element = user.find("password")
                     if password_element.text == password:
                         self.root.destroy()
+                        messagebox.showinfo("Success", "Successful Login.")
                         Timetable()
         else:
             print(f"username needs to be 5 characters or more,\nusername is {len(username)} and password is {len(password)} characters long")
