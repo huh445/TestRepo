@@ -1,0 +1,34 @@
+<music_lessons>
+  <lesson>
+    <date>2024-06-03</date>
+    <student>Alice Jones</student>
+    <teacher>Mr. Brown</teacher>
+    <teacherid>1</teacherid>
+    <time>12:00</time>
+    <instrument>Piano</instrument>
+  </lesson>
+  <lesson>
+    <date>2024-06-10</date>
+    <student>Bob Stevenson</student>
+    <teacher>Ms. Jones</teacher>
+    <teacherid>2</teacherid>
+    <time>14:00</time>
+    <instrument>Guitar</instrument>
+  </lesson>
+  <lesson>
+    <date>2024-06-17</date>
+    <student>John Ass</student>
+    <teacher>Mr. Smith</teacher>
+    <teacherid>3</teacherid>
+    <time>10:00</time>
+    <instrument>Drums</instrument>
+  </lesson>
+  <lesson>
+    <date>2024-06-17</date>
+    <student>John Stevenson</student>
+    <teacher>Mr. Brown</teacher>
+    <teacherid>1</teacherid>
+    <time>11:00</time>
+    <instrument>Piano</instrument>
+  </lesson>
+</music_lessons>

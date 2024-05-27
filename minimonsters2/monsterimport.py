@@ -10,6 +10,7 @@ class Search:
             reader = self.csv.reader(f)
             headers = next(reader)
             rows = list(reader)
+        print(rows)
         self.rows = rows
         self.headers = headers
         return headers, rows

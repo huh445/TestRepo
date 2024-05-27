@@ -13,6 +13,7 @@ class Login:
         self.login_button = tk.Button(self.root, text="Login", command=self.goto_validate)
 
         self.pack()
+
     def goto_validate(self):
         username = self.username.get()
         password = self.password.get()
@@ -25,6 +26,7 @@ class Login:
             Timetable(id, staff)
         else:
             print(False)
+            
     def pack(self):
         self.root.geometry("640x480")
         self.username.pack()

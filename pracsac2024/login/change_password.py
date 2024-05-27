@@ -11,6 +11,7 @@ class PasswordChanger:
         self.entry = tk.Entry(self.root)
         self.change_pass = tk.Button(self.root, text="Change Password", command=self.change)
         self.pack()
+        
     def change(self):
         password = self.entry.get()
         if len(password) == 5:
@@ -18,6 +19,7 @@ class PasswordChanger:
             self.root.destroy()
         else:
             messagebox.showerror("Error", "Password needs to be 5 characters.")
+
     def pack(self):
         self.entry.pack()
         self.change_pass.pack()
