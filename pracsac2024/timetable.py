@@ -11,7 +11,7 @@ class Timetable:
         self.tree = ttk.Treeview(self.root)
         self.tree["columns"] = ("Time", "Name", "Instrument")
         self.validate = Analyse()
-        self.add_lesson = AddLesson()
+        self.add_lesson = AddLesson(id)
         self.id = id
         self.staff = staff
         self.root.geometry("800x400")

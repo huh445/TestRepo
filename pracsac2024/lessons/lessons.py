@@ -20,6 +20,7 @@ class Analyse:
                 col.append(date)
                 row.append([time, student, instrument])
         return row, col
+    
     def search(self, dates):
         row = []
         col = []
