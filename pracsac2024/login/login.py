@@ -16,10 +16,13 @@ class Login:
     def goto_validate(self):
         username = self.username.get()
         password = self.password.get()
-        if self.validate.login(username, password) == True:
+        validate, staff, id = self.validate.login(username, password)
+        if staff == True and validate == True:
             self.root.destroy()
-            messagebox.showinfo("Success", "Successful Login.")
-            Timetable()
+            Timetable(id, staff)
+        elif validate == True:
+            self.root.destroy()
+            Timetable(id, staff)
         else:
             print(False)
     def pack(self):
