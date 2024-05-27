@@ -16,24 +16,21 @@ class Login:
         password = self.password.get()
         xml_root = self.xml.getroot()
         users = xml_root.findall("user")
-        # print("0")
         if len(username) == 5 and len(password) == 5:
-            # print("1")
-            # print("1.5")
             for user in users:
-                # print("2")
                 username_element = user.find("username")
                 username_text = username_element.text
                 if username_text == username:
                     currid = user.find("id")
-                    self.password_validate(currid, users, password)
+                    self.password_validate(currid.text, users, password)
 
         else:
-            print("username needs to be 5 characters or more")
+            print(f"username needs to be 5 characters or more,\nusername is {len(username)} and password is {len(password)} characters long")
     def password_validate(self, id, users, password):
         for user in users:
-            username_element = user.find("id")
-            if username_element.text == id and user.find("password") == password:
+            id_element = user.find("id")
+            password_element = user.find("password")
+            if id_element.text == id and password_element.text == password:
                 print("success")
     def pack(self):
         self.root.geometry("640x480")
