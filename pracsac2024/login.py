@@ -1,4 +1,5 @@
 import tkinter as tk
+from timetable import Timetable
 
 class Login:
     def __init__(self, root, xml):
@@ -8,10 +9,10 @@ class Login:
         self.username = tk.Entry(self.root)
         self.password = tk.Entry(self.root)
 
-        self.login_button = tk.Button(self.root, text="Login", command=self.username_validate)
+        self.login_button = tk.Button(self.root, text="Login", command=self.validate)
 
         self.pack()
-    def username_validate(self):
+    def validate(self):
         username = self.username.get()
         password = self.password.get()
         xml_root = self.xml.getroot()
@@ -21,17 +22,12 @@ class Login:
                 username_element = user.find("username")
                 username_text = username_element.text
                 if username_text == username:
-                    currid = user.find("id")
-                    self.password_validate(currid.text, users, password)
-
+                    password_element = user.find("password")
+                    if password_element.text == password:
+                        self.root.destroy()
+                        Timetable()
         else:
             print(f"username needs to be 5 characters or more,\nusername is {len(username)} and password is {len(password)} characters long")
-    def password_validate(self, id, users, password):
-        for user in users:
-            id_element = user.find("id")
-            password_element = user.find("password")
-            if id_element.text == id and password_element.text == password:
-                print("success")
     def pack(self):
         self.root.geometry("640x480")
         self.username.pack()
