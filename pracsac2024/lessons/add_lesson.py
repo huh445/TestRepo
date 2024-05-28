@@ -13,19 +13,24 @@ class AddLesson:
         instrument = self.instrument_entry.get()
         # room = self.room_entry.get()
         combination = self.combination_get.get()
-        self.analyse.add_lesson(name, date, time, instrument, combination)
+        self.analyse.add_lesson(name, date, time, instrument, combination, str(self.id))
 
-    def actual(self):
+    def actual(self, id):
         self.root = tk.Tk()
         self.root.geometry("640x480")
+        self.id = id
 
         self.analyse = Analyse()
-
+        self.name_label = tk.Label(self.root, text="Student Name:")
         self.name_entry = tk.Entry(self.root)
+        self.date_label = tk.Label(self.root, text="Date:")
         self.date_entry = tk.Entry(self.root)
+        self.time_label = tk.Label(self.root, text="Time:")
         self.time_entry = tk.Entry(self.root)
+        self.instrument_label = tk.Label(self.root, text="Instrument:")
         self.instrument_entry = tk.Entry(self.root)
         self.room_entry = tk.Entry(self.root)
+        self.combination_label = tk.Label(self.root, text="Has student prepaid?")
         self.combination_get = ttk.Combobox(self.root, values=["True", "False"])
         self.add_lesson_button =  tk.Button(self.root, text="Add Lesson", command=self.add_lesson)
 
@@ -34,11 +39,16 @@ class AddLesson:
         self.pack()
 
     def pack(self):
+        self.name_label.pack()
         self.name_entry.pack()
+        self.date_label.pack()
         self.date_entry.pack()
+        self.time_label.pack()
         self.time_entry.pack()
+        self.instrument_label.pack()
         self.instrument_entry.pack()
-        self.room_entry.pack()
+        # self.room_entry.pack()
+        self.combination_label.pack()
         self.combination_get.pack()
         self.add_lesson_button.pack()
         self.root.mainloop()

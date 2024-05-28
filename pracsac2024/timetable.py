@@ -32,7 +32,7 @@ class Timetable:
             self.tree.insert("", tk.END, text=date, values=row)
 
     def add_booking(self):
-        self.add_lesson.actual()
+        self.add_lesson.actual(self.id)
 
     def search(self):
         date = self.search_entry.get()
@@ -48,11 +48,11 @@ class Timetable:
             messagebox.showerror("Error", "Permission Denied")
 
     def pack(self):
-        self.change_pass_button.pack()
         self.search_entry.pack()
         self.search_button.pack()
         self.add_booking_button.pack()
         self.tree.pack()
+        self.change_pass_button.pack()
         self.logout_button.pack()
         self.root.mainloop()
 if __name__ == "__main__":
