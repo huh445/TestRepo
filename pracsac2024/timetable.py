@@ -10,12 +10,12 @@ class Timetable:
     def __init__(self, id, staff):
         self.root = tk.Tk()
         self.tree = ttk.Treeview(self.root)
-        self.tree["columns"] = ("Time", "Name", "Instrument")
+        self.tree["columns"] = ("Time", "Name", "Instrument", "Room")
         self.validate = Analyse()
         self.add_lesson = AddLesson(id)
         self.id = id
         self.staff = staff
-        self.root.geometry("800x400")
+        self.root.geometry("1000x400")
         self.search_entry = tk.Entry(self.root)
         self.search_button = tk.Button(self.root, text="Search Dates", command=self.search)
         self.change_pass_button = tk.Button(self.root, text="Change Password", command=self.change_password)
@@ -27,10 +27,8 @@ class Timetable:
 
     def display_tree(self):
         self.tree.heading("#0", text="Date")
-        for col in ("Time", "Name", "Instrument"):
+        for col in ("Time", "Name", "Instrument", "Room"):
             self.tree.heading(col, text=col)
-        rows, col = self.validate.get_lessons(self.id)
-        self.update_tree(rows, col)
 
     def add_booking(self):
         if self.staff == True:
@@ -39,12 +37,12 @@ class Timetable:
             messagebox.showerror("Error", "Permission Denied")
 
     def search(self):
-        rows, col = self.validate.search(date.today())
+        entry = self.search_entry.get()
+        rows, col = self.validate.search(entry)
         self.update_tree(rows, col)
 
     def current_search(self):
         today = date.today()
-        print(today)
         rows, col = self.validate.search(today)
         self.update_tree(rows, col)
 
@@ -52,6 +50,7 @@ class Timetable:
         self.tree.delete(*self.tree.get_children())
         for row, date in zip(rows, col):
             self.tree.insert("", tk.END, text=date, values=row)
+            
     def change_password(self):
         if self.staff == True:
             PasswordChanger(self.id)

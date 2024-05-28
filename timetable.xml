@@ -37,19 +37,17 @@
     <roomid>2</roomid>
     <has_paid>True</has_paid>  </lesson>
   <lesson>
-    <date>2024-05-28</date>
+    <date>2024-05-29</date>
     <student>Emily Johnson</student>  <teacher>Mr. Brown</teacher>
     <teacherid>1</teacherid>
     <time>11:00</time>  <instrument>Piano</instrument>
     <roomid>2</roomid>
     <has_paid>False</has_paid>  </lesson>
   <lesson>
-    <date>2024-05-28</date>
+    <date>2024-05-29</date>
     <student>David Miller</student>  <teacher>Mr. Brown</teacher>
     <teacherid>1</teacherid>
     <time>14:00</time>  <instrument>Piano</instrument>
-    <roomid>2</roomid>
+    <roomid>3</roomid>
     <has_paid>True</has_paid>  </lesson>
-
-
-</music_lessons>
+    </music_lessons>
