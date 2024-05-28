@@ -25,6 +25,7 @@ class Analyse:
         for lesson in self.lessons:
             date_element = lesson.find("date").text
             if dates == date_element:
+                print(1)
                 date = lesson.find("date").text
                 student = lesson.find("student").text
                 time = lesson.find("time").text
@@ -34,15 +35,10 @@ class Analyse:
         return row, col
     
     def add_lesson(self, name, date, time, instrument, combination, id):
-        # Access the root element from the parsed XML
         xml_root = self.xml.getroot()
 
-        # Find the <music_lessons> element (assuming it exists)
-
-        # Create the new lesson element
         new_lesson = ET.Element("lesson")
 
-        # Add child elements to the new lesson element
         ET.SubElement(new_lesson, "date").text = date
         ET.SubElement(new_lesson, "student").text = name
         ET.SubElement(new_lesson, "teacherid").text = id
@@ -52,5 +48,4 @@ class Analyse:
 
         xml_root.append(new_lesson)
 
-        # Write the entire updated XML tree back to the file
         self.xml.write("timetable.xml", encoding="utf-8", xml_declaration=True)

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from datetime import date
 from login.change_password import PasswordChanger
 from lessons.lessons import Analyse
 from lessons.add_lesson import AddLesson
@@ -21,6 +22,7 @@ class Timetable:
         self.add_booking_button = tk.Button(self.root, text="Add Booking", command=self.add_booking)
         self.logout_button = tk.Button(self.root, text="Logout", command=lambda: self.root.destroy())
         self.display_tree()
+        self.current_search()
         self.pack()
 
     def display_tree(self):
@@ -28,19 +30,28 @@ class Timetable:
         for col in ("Time", "Name", "Instrument"):
             self.tree.heading(col, text=col)
         rows, col = self.validate.get_lessons(self.id)
-        for row, date in zip(rows, col):
-            self.tree.insert("", tk.END, text=date, values=row)
+        self.update_tree(rows, col)
 
     def add_booking(self):
-        self.add_lesson.actual(self.id)
+        if self.staff == True:
+            self.add_lesson.actual(self.id)
+        else:
+            messagebox.showerror("Error", "Permission Denied")
 
     def search(self):
-        date = self.search_entry.get()
+        rows, col = self.validate.search(date.today())
+        self.update_tree(rows, col)
+
+    def current_search(self):
+        today = date.today()
+        print(today)
+        rows, col = self.validate.search(today)
+        self.update_tree(rows, col)
+
+    def update_tree(self, rows, col):
         self.tree.delete(*self.tree.get_children())
-        rows, col = self.validate.search(date)
         for row, date in zip(rows, col):
             self.tree.insert("", tk.END, text=date, values=row)
-
     def change_password(self):
         if self.staff == True:
             PasswordChanger(self.id)

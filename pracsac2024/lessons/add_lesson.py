@@ -14,6 +14,7 @@ class AddLesson:
         # room = self.room_entry.get()
         combination = self.combination_get.get()
         self.analyse.add_lesson(name, date, time, instrument, combination, str(self.id))
+        self.root.destroy()
 
     def actual(self, id):
         self.root = tk.Tk()
