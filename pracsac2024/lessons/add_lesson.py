@@ -14,6 +14,7 @@ class AddLesson:
         instrument = self.instrument_entry.get()
         combination = self.combination_get.get()
         rooms = self.room_combination.get()
+        rooms =  self.import_rooms.get_id(rooms)
         self.analyse.add_lesson(name, date, time, instrument, combination, rooms, str(self.id))
         self.root.destroy()
     

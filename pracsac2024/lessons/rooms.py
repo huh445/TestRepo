@@ -17,3 +17,10 @@ class ImportRooms:
             for rows in reader:
                 rooms.append(rows[1])
         return rooms
+    def get_id(self, rooms):
+        with open("rooms.csv", mode="r") as f:
+            reader =self.csv.reader(f)
+            for rows in reader:
+                if rooms in rows[1]:
+                    room = rows[0]
+        return room
