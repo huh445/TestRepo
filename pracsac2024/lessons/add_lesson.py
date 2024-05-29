@@ -44,24 +44,30 @@ class AddLesson:
         self.room_combination = ttk.Combobox(self.root, values=rooms)
         self.add_lesson_button =  tk.Button(self.root, text="Add Lesson", command=self.add_lesson)
 
-        self.combination_get.current(0)
+        self.combination_get.current(1)
 
-        self.room_combination.current(0)
+        self.room_combination.current(1)
 
         self.pack()
 
     def pack(self):
         self.name_label.pack()
         self.name_entry.pack()
+
         self.date_label.pack()
         self.date_entry.pack()
+
         self.time_label.pack()
         self.time_entry.pack()
+
         self.instrument_label.pack()
         self.instrument_entry.pack()
+
         self.combination_label.pack()
         self.combination_get.pack()
-        self.add_lesson_button.pack()
+
         self.room_label.pack()
         self.room_combination.pack()
+
+        self.add_lesson_button.pack()
         self.root.mainloop()
