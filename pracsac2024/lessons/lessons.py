@@ -21,20 +21,22 @@ class Analyse:
                 row.append([time, student, instrument])
         return row, col
     
-    def search(self, dates):
+    def search(self, dates, id):
         row = []
         col = []
         for lesson in self.lessons:
             date_element = lesson.find("date").text
-            if str(dates) == str(date_element):
+            id_element = lesson.find("teacherid").text
+            if str(dates) == str(date_element) and int(id) == int(id_element):
                 date = lesson.find("date").text
                 student = lesson.find("student").text
                 time = lesson.find("time").text
+                lessons_missed = lesson.find("lessons_missed").text
                 instrument = lesson.find("instrument").text
                 roomid = lesson.find("roomid").text
                 roomid = self.import_rooms.import_rooms(roomid)
                 col.append(date)
-                row.append([time, student, instrument, roomid])
+                row.append([time, lessons_missed, student, instrument, roomid])
         return row, col
     
     def add_lesson(self, name, date, time, instrument, combination, rooms, id):

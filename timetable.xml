@@ -8,7 +8,8 @@
     <time>12:00</time>
     <instrument>Piano</instrument>
     <roomid>2</roomid>
-    <has_paid>True</has_paid>  </lesson>
+    <has_paid>True</has_paid>
+    <lessons_missed>0</lessons_missed>  </lesson>
   <lesson>
     <date>2024-06-10</date>
     <student>Bob Stevenson</student>
@@ -17,7 +18,8 @@
     <time>14:00</time>
     <instrument>Guitar</instrument>
     <roomid>1</roomid>
-    <has_paid>False</has_paid>  </lesson>
+    <has_paid>False</has_paid>
+    <lessons_missed>1</lessons_missed>  </lesson>
   <lesson>
     <date>2024-06-17</date>
     <student>John Ass</student>
@@ -26,6 +28,7 @@
     <time>10:00</time>
     <instrument>Drums</instrument>
     <roomid>3</roomid>
+    <lessons_missed>0</lessons_missed>
     <has_paid>False</has_paid>  </lesson>
   <lesson>
     <date>2024-06-17</date>
@@ -35,19 +38,24 @@
     <time>11:00</time>
     <instrument>Piano</instrument>
     <roomid>2</roomid>
-    <has_paid>True</has_paid>  </lesson>
+    <has_paid>True</has_paid>
+    <lessons_missed>1</lessons_missed>  </lesson>
   <lesson>
     <date>2024-05-29</date>
     <student>Emily Johnson</student>  <teacher>Mr. Brown</teacher>
     <teacherid>1</teacherid>
     <time>11:00</time>  <instrument>Piano</instrument>
     <roomid>2</roomid>
-    <has_paid>False</has_paid>  </lesson>
+    <has_paid>False</has_paid>
+    <lessons_missed>2</lessons_missed>
+      </lesson>
   <lesson>
     <date>2024-05-29</date>
     <student>David Miller</student>  <teacher>Mr. Brown</teacher>
     <teacherid>1</teacherid>
     <time>14:00</time>  <instrument>Piano</instrument>
     <roomid>3</roomid>
-    <has_paid>True</has_paid>  </lesson>
+    <has_paid>True</has_paid>
+    <lessons_missed>1</lessons_missed>
+      </lesson>
     </music_lessons>

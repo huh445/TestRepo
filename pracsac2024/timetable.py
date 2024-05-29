@@ -10,12 +10,12 @@ class Timetable:
     def __init__(self, id, staff):
         self.root = tk.Tk()
         self.tree = ttk.Treeview(self.root)
-        self.tree["columns"] = ("Time", "Name", "Instrument", "Room")
+        self.tree["columns"] = ("Time", "Lessons Missed", "Name", "Instrument", "Room")
         self.validate = Analyse()
         self.add_lesson = AddLesson(id)
         self.id = id
         self.staff = staff
-        self.root.geometry("1000x400")
+        self.root.geometry("1300x400")
         self.search_entry = tk.Entry(self.root)
         self.search_button = tk.Button(self.root, text="Search Dates", command=self.search)
         self.change_pass_button = tk.Button(self.root, text="Change Password", command=self.change_password)
@@ -27,7 +27,7 @@ class Timetable:
 
     def display_tree(self):
         self.tree.heading("#0", text="Date")
-        for col in ("Time", "Name", "Instrument", "Room"):
+        for col in ("Time", "Lessons Missed", "Name", "Instrument", "Room"):
             self.tree.heading(col, text=col)
 
     def add_booking(self):
@@ -43,7 +43,7 @@ class Timetable:
 
     def current_search(self):
         today = date.today()
-        rows, col = self.validate.search(today)
+        rows, col = self.validate.search(today, self.id)
         self.update_tree(rows, col)
 
     def update_tree(self, rows, col):
@@ -66,4 +66,4 @@ class Timetable:
         self.logout_button.pack()
         self.root.mainloop()
 if __name__ == "__main__":
-    john = Timetable(1, True)
+    john = Timetable(True, 1)
