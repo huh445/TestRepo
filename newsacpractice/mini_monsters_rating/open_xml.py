@@ -23,7 +23,11 @@ class OpenXML:
         for key, value in data.items():
             sub_element = ET.SubElement(monster, key)
             sub_element.text = str(value)
-        self.xml.write("newsacpractice/mini_monsters_rating/monsters.xml", encoding="utf-8", xml_declaration=True)
+            try:
+                self.xml.write(self.xml_file_path, encoding="utf-8", xml_declaration=True)
+            except ET.ParseError:
+                # Handle XML writing error
+                print("Error: Failed to write to XML file.")
     def highest_rank(self):
         highest_id = 0
         for monster in self.monsters:

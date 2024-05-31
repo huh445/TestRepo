@@ -28,13 +28,14 @@ class Books:
         qty = self.qty.get()
         error_message = ""
 
-        if not first_name and not last_name and not email and not qty:
+        if not all([first_name, last_name, email, qty]):
             error_message = "Do not leave text empty"
+        else:
         
-        if int(qty) < 1:
-            error_message = "Order can not be less than 1"
-        elif int(qty) == 12:
-            error_message = "Please speak to the counter for free coffee"
+            if int(qty) < 1:
+                error_message = "Order can not be less than 1"
+            elif int(qty) == 12:
+                error_message = "Please speak to the counter for free coffee"
         
         self.error_message.config(text=error_message)
 
