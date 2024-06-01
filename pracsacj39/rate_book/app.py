@@ -9,6 +9,7 @@ class App:
         self.root = tk.Tk()
         self.csv_read = ReadCSV()
         self.search = Search()
+        self.rate_book = RateBook()
 
         self.tree = ttk.Treeview(self.root)
         
@@ -23,7 +24,7 @@ class App:
 
         self.search_button = tk.Button(self.root, text="Search", command=self.search_list)
 
-        self.rate_book = tk.Button(self.root, text="Rate the book", command=lambda: RateBook())
+        self.rate_book_button = tk.Button(self.root, text="Rate the book", command=lambda: self.rate_book.get_rating(self.list, self.first_name, self.last_name))
         
         self.init_tree()
         self.run()
@@ -43,8 +44,10 @@ class App:
         first_name = self.first_name_entry.get()
         last_name = self.last_name_entry.get()
         book_name = self.book_entry.get()
+        self.first_name, self.last_name = first_name, last_name
         self.list = self.search.search(self.list, first_name, last_name, book_name)
         self.update_tree(self.list)
+        self.rate_book_button.pack()
     
     def update_tree(self, list):
         self.tree.delete(*self.tree.get_children())
@@ -66,7 +69,6 @@ class App:
         self.book_entry.pack()
 
         self.search_button.pack()
-        self.rate_book.pack()
 
         self.tree.pack()
 

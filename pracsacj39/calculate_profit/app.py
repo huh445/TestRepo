@@ -1,5 +1,5 @@
 import tkinter as tk
-from pracsacj39.calculate_profit.get_profit import GetProfit
+from get_profit import GetProfit
 
 class App:
     def __init__(self):
