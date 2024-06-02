@@ -16,3 +16,14 @@ class ReadCSV:
                     info_dict = {"book_name": book_name, "first_name": first_name, "last_name": last_name}
                     info.append(info_dict)
         return info
+    
+    def create_csv(self, list):
+        with open("pracsacj39/shop_data_new.csv", mode="w", newline=("")) as f:
+            column_names = list[0].keys()
+
+            writer = self.csv.DictWriter(f, fieldnames=column_names)
+
+            writer.writeheader()
+
+            for data in list:
+                writer.writerow(data)
