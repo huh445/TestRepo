@@ -23,6 +23,7 @@ class Timetable:
         self.search_button = tk.Button(self.root, text="Search", command=self.search)
         self.change_pass_button = tk.Button(self.root, text="Change Password", command=self.change_pass)
         self.add_lesson_button = tk.Button(self.root, text="Add a Lesson", command=self.add_lesson)
+        
         self.init_tree()
         self.get_date()
         self.pack()
