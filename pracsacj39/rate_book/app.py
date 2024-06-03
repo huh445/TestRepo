@@ -30,16 +30,14 @@ class App:
         self.run()
 
     def init_tree(self):
-        self.list = self.read_csv()
+        self.list = self.csv_read.read_csv()
         self.list_const = self.list
         self.tree.heading("#0", text="Book Name")
-        self.tree["columns"] = ("first_name", "last_name")
+        self.tree["columns"] = ("first_name", "last_name", "rating")
         self.tree.heading("first_name", text="First Name", anchor=tk.W)
         self.tree.heading("last_name", text="Last Name", anchor=tk.W)
+        self.tree.heading("rating", text="Rating", anchor=tk.W)
         self.update_tree(self.list)
-
-    def read_csv(self):
-        return self.csv_read.read_csv()
     
     def rate_book(self):
         rating = self.rate_book_entry.get()
@@ -70,8 +68,8 @@ class App:
             book_name = info["book_name"]
             first_name = info["first_name"]
             last_name = info["last_name"]
-            
-            self.tree.insert("", tk.END, text=book_name, values=(first_name, last_name))
+            rating = info["rating"]
+            self.tree.insert("", tk.END, text=book_name, values=(first_name, last_name, rating))
 
     def run(self):
         self.first_name_label.pack()

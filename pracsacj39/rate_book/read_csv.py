@@ -11,9 +11,10 @@ class ReadCSV:
             for row in reader:
                 book_name = row[0]
                 name = row[4]
+                rating = row[6]
                 if "NA" not in name:
                     first_name, last_name = name.split(" ", 1)
-                    info_dict = {"book_name": book_name, "first_name": first_name, "last_name": last_name}
+                    info_dict = {"book_name": book_name, "first_name": first_name, "last_name": last_name, "rating": rating}
                     info.append(info_dict)
         return info
     
