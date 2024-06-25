@@ -1,9 +1,10 @@
 import tkinter as tk
+from tkinter import ttk
 from monsterimport import Search
 class App:
-    def __init__(self, root, tree):
-        self.root = root
-        self.tree = tree
+    def __init__(self):
+        self.root = tk.Tk()
+        self.tree = ttk.Treeview(self.root)
         self.root.title("Mini Monsters Index")
         self.csv = Search()
         
@@ -67,3 +68,5 @@ class App:
         self.tree.pack(pady=10, fill=tk.BOTH)
         self.sortNameButton.pack(side="left", pady=10, padx=5)
         self.sortNumButton.pack(side="left", pady=10, padx=5)
+
+        self.root.mainloop()
