@@ -102,21 +102,21 @@ class App:
         fig, ax1 = plt.subplots(figsize=(8, 6))
 
         # Plot cumulative spent amount
-        ax1.plot(range(1, len(dates) + 1), cumulative_spent_values, color='tab:blue', marker='o', linestyle='-', label='Cumulative Spent')
-        ax1.set_xlabel('Transaction Number')
-        ax1.set_ylabel('Cumulative Spent', color='tab:blue')
+        ax1.plot(range(1, len(dates) + 1), cumulative_spent_values, color="tab:blue", marker="o", linestyle="-", label="Cumulative Spent")
+        ax1.set_xlabel("Transaction Number")
+        ax1.set_ylabel("Cumulative Spent", color="tab:blue")
 
-        plt.title('Cumulative Spent and Count of Transactions Over Time')
+        plt.title("Cumulative Spent and Count of Transactions Over Time")
         plt.tight_layout()
 
         # Show legend
-        fig.legend(loc='upper left', bbox_to_anchor=(0.12,0.9))
+        fig.legend(loc="upper left", bbox_to_anchor=(0.12,0.9))
 
         # Clear the existing canvas and draw the new graph
         self.canvas.get_tk_widget().pack_forget()
         self.canvas = FigureCanvasTkAgg(fig, master=self.root)
         self.canvas.draw()
-        self.canvas.get_tk_widget().pack(expand=True, fill='both')
+        self.canvas.get_tk_widget().pack(expand=True, fill="both")
 
 
     def pack(self):
@@ -126,7 +126,7 @@ class App:
         self.info.config(font=("Arial", 24))
         self.entry.pack()
         self.check.pack()
-        self.tree.pack(expand=True, fill='both')
+        self.tree.pack(expand=True, fill="both")
         self.all()
     
     def close(self):

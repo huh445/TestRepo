@@ -26,6 +26,6 @@ class App:
     
     def run(self):
         self.tree_button.pack()
-        self.tree.pack()
+        self.tree9.pack()
 
         self.root.mainloop()

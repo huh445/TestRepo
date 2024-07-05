@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 class tkinterStuff:
     def __init__(self, master):
         self.master = master
-        self.master.title("John's image playlist")
+        self.master.title("John"s image playlist")
         self.master.geometry("640x480")
 
         self.image = tk.Label(self.master)
