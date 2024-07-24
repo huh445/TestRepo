@@ -1,28 +1,33 @@
 import itertools
 import time
 
-def generate_and_write_combinations():
+def generate_combinations():
     letters = "abcdefghijklmnopqrstuvwxyz"
     numbers = "0123456789"
     suffix = "PC"
+    
+    # Generate all combinations of 3 letters
+    all_combinations = []
+    for combo in itertools.product(letters, repeat=3):
+        combo_str = ''.join(combo)
+        for nums in itertools.product(numbers, repeat=3):
+            all_combinations.append(combo_str + ''.join(nums) + suffix)
+    
+    return all_combinations
 
+def write_combinations_to_file(combinations):
     with open('output.txt', 'w') as f:
-        # Generate all combinations of 3 letters
-        for combo in itertools.product(letters, repeat=3):
-            combo_str = ''.join(combo)
-            # Generate all combinations of 3 numbers
-            for nums in itertools.product(numbers, repeat=3):
-                password = combo_str + ''.join(nums) + suffix
-                f.write(password + '\n')  # Write each password to file
+        f.write('\n'.join(combinations) + '\n')
 
 def measure_generation_time():
     start_time = time.time()
-    generate_and_write_combinations()  # Generate and write to file
+    all_combinations = generate_combinations()  # Generate all combinations
+    write_combinations_to_file(all_combinations)  # Write to file
     end_time = time.time()
     return end_time - start_time
 
 if __name__ == '__main__':
-    iterations = 3  # Set to 1 for a single run
+    iterations = 3  # Number of iterations for timing
     times = []
 
     for _ in range(iterations):
