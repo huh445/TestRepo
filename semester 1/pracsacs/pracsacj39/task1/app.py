@@ -7,8 +7,6 @@ class App:
         self.root = tk.Tk()
         self.calculate_value = CalculateValue()
 
-        self.total_price = 0
-
         self.age_label = tk.Label(self.root, text="How old is the textbook (in years)?")
         self.age_entry = tk.Entry(self.root)
         self.price_label = tk.Label(self.root, text="How much did you pay for the textbook?")
@@ -22,14 +20,12 @@ class App:
             age = int(self.age_entry.get())
             price = int(self.price_entry.get())
             price = self.calculate_value.calculate_value(price, age)
-            self.total_price = self.total_price + price
-            messagebox.showinfo("Price", f"The price is ${price}\n"
-                                f"The total price is ${self.total_price}")
-            response = messagebox.askyesno("Question", "Would you like to add another item?")
+            messagebox.showinfo("Price", f"The price is {price}")
+            response = messagebox.askyesno("Question", "Would you like to add another book?")
             if not response:
                 self.root.destroy()
         except ValueError:
-            messagebox.showerror("Error", "Please input a valid integer")
+            messagebox.showerror("Error", "Please make sure that the age and price are both numbers.")
         
     def run(self):
         self.age_label.pack()

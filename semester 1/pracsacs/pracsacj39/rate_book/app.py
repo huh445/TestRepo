@@ -10,7 +10,7 @@ class App:
         self.search = Search()
 
         self.tree = ttk.Treeview(self.root)
-        
+
         self.first_name_label = tk.Label(self.root, text="First Name:")
         self.first_name_entry = tk.Entry(self.root)
 
@@ -24,8 +24,9 @@ class App:
 
         self.rate_book_label = tk.Label(self.root, text="Rate the book (1/5)")
         self.rate_book_entry = tk.Entry(self.root)
+
         self.rate_book_button = tk.Button(self.root, text="Rate the book", command=self.rate_book)
-        
+
         self.init_tree()
         self.run()
 
@@ -44,12 +45,14 @@ class App:
         if int(rating) < 0 or int(rating) > 5:
             messagebox.showerror("Error", "Rating has to be from 1 to 5.")
             return
-        index = self.list_const.index(self.list[0])
-        del self.list_const[index]
-        self.list[0]["rating"] = rating
-        self.list_const.insert(index, self.list[0])
-        self.csv_read.create_csv(self.list_const)
-
+        try:
+            index = self.list_const.index(self.list[0])
+            del self.list_const[index]
+            self.list[0]["rating"] = rating
+            self.list_const.insert(index, self.list[0])
+            self.csv_read.create_csv(self.list_const)
+        except Exception as e:
+            messagebox.showerror("Error", f"Fatal error, {e}")
     
     def search_list(self):
         first_name = self.first_name_entry.get()

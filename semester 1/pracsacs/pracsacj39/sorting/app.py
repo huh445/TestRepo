@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from csv_reader import CSVReader
 from sort import Sort
 
@@ -15,32 +15,47 @@ class App:
         self.quit_button = tk.Button(self.root, text="Quit", command=lambda: self.root.destroy())
         self.import_tree()
         self.run()
-    
+
     def import_tree(self):
-        headers, rows = self.csv.read_csv()
-        self.headers, self.rows = headers, rows
-        self.tree["columns"] = headers
-        self.update_tree(rows)
+        try:
+            headers, rows = self.csv.read_csv()
+            self.headers, self.rows = headers, rows
+            self.tree["columns"] = headers
+            self.update_tree(rows)
+        except Exception as e:
+            messagebox.showerror("Error", f"Fatal error importing CSV:{e}")
 
     def sort_subject(self):
-        rows = self.sort.sort_subject(self.rows)
-        self.update_tree(rows)
+        try:
+            rows = self.sort.sort_subject(self.rows)
+            self.update_tree(rows)
+        except Exception as e:
+            messagebox.showerror("Error", f"Fatal error sorting for subject: {e}")
     
     def sort_textbook(self):
-        rows = self.sort.sort_textbook(self.rows)
-        self.update_tree(rows)
+        try:
+            rows = self.sort.sort_textbook(self.rows)
+            self.update_tree(rows)
+        except Exception as e:
+            messagebox.showerror("Error", f"Fatal error sorting for textbook: {e}0")
     
     def sort_rating(self):
-        rows = self.sort.sort_rating(self.rows)
-        self.update_tree(rows)
+        try:
+            rows = self.sort.sort_rating(self.rows)
+            self.update_tree(rows)
+        except Exception as e:
+            messagebox.showerror("Error", f"Fatal error sorting for rating: {e}")
 
     def update_tree(self, rows):
-        self.tree.delete(*self.tree.get_children())
-        for header in self.headers:
-            self.tree.heading(header, text=header)
-            self.tree.column(header)
-        for row in rows:
-            self.tree.insert("", tk.END, values=row)
+        try:
+            self.tree.delete(*self.tree.get_children())
+            for header in self.headers:
+                self.tree.heading(header, text=header)
+                self.tree.column(header)
+            for row in rows:
+                self.tree.insert("", tk.END, values=row)
+        except Exception as e:
+            messagebox.showerror("Error", f"Fatal error updating tree: {e}")
 
     def run(self):
         self.tree.pack()
