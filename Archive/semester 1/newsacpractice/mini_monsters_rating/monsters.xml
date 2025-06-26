@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<monsterlist>
+    <monster>
+        <rank>1</rank>
+        <name>electromouse</name>
+        <type>electric-type</type>
+        <weight>6.0</weight>
+        <colour>yellow</colour>
+    </monster>
+    <monster>
+        <rank>2</rank>
+        <name>firelizard</name>
+        <type>fire/flying-type</type>
+        <weight>90.5</weight>
+        <colour>orange</colour>
+        <colour>cream</colour>
+    </monster>
+    <monster>
+        <rank>3</rank>
+        <name>grassonion</name>
+        <type>grass/poison-type</type>
+        <weight>6.9</weight>
+        <colour>green</colour>
+        <colour>blue</colour>
+    </monster>
+    <monster>
+        <rank>4</rank>
+        <name>turtleboy</name>
+        <type>water-type</type>
+        <weight>9.0</weight>
+        <colour>light blue</colour>
+    </monster>
+    <monster>
+        <rank>5</rank>
+        <name>woofone</name>
+        <type>psychic-type</type>
+        <weight>122.0</weight>
+        <colour>purple</colour>
+    </monster>
+    </monsterlist>
